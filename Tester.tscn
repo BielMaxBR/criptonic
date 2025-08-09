@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg1l2byxgt8pa"]
+
+[ext_resource type="Script" uid="uid://cpmr34oakl34u" path="res://Tester.cs" id="1_jbhx4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cduc"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jbhx4"]
+
+[node name="Tester" type="Node3D"]
+script = ExtResource("1_jbhx4")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8cduc")
+mesh = SubResource("ArrayMesh_jbhx4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -1.81594, 25.7795, 19.2428)
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.759498, -0.650509, 1.27103e-08, -0.620018, 0.723899, 0.302569, -0.196824, 0.229801, -0.953127, -15.6988, 69.0133, 24.473)
+shadow_enabled = true
