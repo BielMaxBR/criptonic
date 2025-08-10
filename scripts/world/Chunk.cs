@@ -2,38 +2,45 @@
 /Game
  ├── /Blocks
  │    ├── Block.cs                # Classe base para blocos (ID, textura, propriedades)
- │    ├── DirtBlock.cs             # Exemplo de bloco concreto
+ │    ├── DirtBlock.cs            # Exemplo de bloco concreto
  │    ├── StoneBlock.cs
- │    ├── BlockDatabase.cs         # Sistema que carrega e registra todos os blocos
- │    ├── BlockAtlasGenerator.cs   # Script que cria o atlas de texturas automaticamente
+ │    ├── BlockDatabase.cs        # Carrega e registra blocos automaticamente
+ │    ├── BlockAtlasGenerator.cs  # Gera o atlas de texturas a partir dos PNGs das faces
  │
  ├── /World
- │    ├── Chunk.cs                 # Armazena e gera a malha de um chunk
- │    ├── WorldGenerator.cs        # Controla a geração do terreno e o carregamento de chunks
- │    ├── Room.cs                  # Representa uma sala individual (pos, tamanho, blocos)
- │    ├── RoomGenerator.cs         # Algoritmo que cria salas sem sobreposição (AABB)
- │    ├── DungeonGenerator.cs      # Junta a geração de salas e o preenchimento de terreno
+ │    ├── WorldController.cs      # Orquestra chunks, renderização e carregamento
+ │    ├── ChunkManager.cs         # Gerencia dados e estado dos chunks
+ │    ├── ChunkRenderer.cs        # Gera/atualiza meshes dos chunks
+ │    ├── Chunk.cs                # Armazena dados de voxel do chunk
+ │    ├── WorldGenerator.cs       # Controla a lógica de geração procedural
+ │    ├── DungeonGenerator.cs     # Gera salas e estrutura principal
+ │    ├── Room.cs                 # Representa uma sala (pos, tamanho, blocos)
+ │    ├── RoomGenerator.cs        # Gera salas sem sobreposição (AABB)
+ │
+ ├── /Systems
+ │    ├── LightingManager.cs      # (Opcional) Gerencia iluminação global
+ │    ├── PhysicsManager.cs       # (Opcional) Gera colisões para os chunks
  │
  ├── /Utils
- │    ├── AABBUtils.cs             # Funções para checagem de colisão entre retângulos 3D
- │    ├── RandomUtils.cs           # Funções auxiliares para números aleatórios
+ │    ├── AABBUtils.cs            # Funções para checagem de colisão entre volumes
+ │    ├── RandomUtils.cs          # Funções auxiliares para geração aleatória
  │
  ├── /Scenes
- │    ├── World.tscn               # Cena principal do mundo
+ │    ├── World.tscn              # Cena principal do mundo
  │
- └── Main.cs                       # Script de inicialização do jogo	
+ └── Main.cs                      # Inicializa o jogo
+
 
 */
 using Godot;
-// using System;
-// using System.Collections.Generic;
 
-public class Chunk {
+public partial class Chunk {
 	public const int SIZE = 16;
 	public Vector3I Position;
-	private Block[,,] BlockList;
+	public Block[,,] BlockList;
 
 	public Chunk(Vector3I pos) {
+
 		Position = pos;
 		BlockList = new Block[SIZE,SIZE,SIZE];
 	}
@@ -45,4 +52,5 @@ public class Chunk {
 	public Block GetBlock(Vector3I pos) {
 		return BlockList[pos.X,pos.Y,pos.Z];
 	}
+
 }
