@@ -6,9 +6,9 @@ public class WorldController {
 
 	int renderDistance = 12;
 
-	public WorldController() {
+	public WorldController(Node3D root) {
 		chunkManager = new ChunkManager();
-		chunkRenderer = new ChunkRenderer();
+		chunkRenderer = new ChunkRenderer(root);
 	}
 
 	public void UdpateChunks() {
@@ -17,7 +17,7 @@ public class WorldController {
 		chunkManager.RequestChunk(pos);
 
 		Chunk chunk = chunkManager.GetChunk(pos);
-		chunkRenderer.Render(chunk);
+		chunkRenderer.Render(chunk, pos);
 
 	}
 }

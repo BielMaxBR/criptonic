@@ -17,7 +17,8 @@ public class ChunkManager {
 		Chunk chunk = new Chunk(pos);
 		for (int x = 0; x < 5; x++) {
 			for (int y = 0; y < 5; y++) {
-				chunk.SetBlock(new Vector3I(x,0,y), new Block());
+				Vector3I blockPos = new Vector3I(x,0,y);
+				chunk.SetBlock(blockPos, new Block(blockPos));
 			}
 		}
 		LoadedChunks.Add(pos,chunk);

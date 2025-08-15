@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg1l2byxgt8pa"]
+[gd_scene load_steps=6 format=3 uid="uid://cg1l2byxgt8pa"]
 
 [ext_resource type="Script" uid="uid://cpmr34oakl34u" path="res://Tester.cs" id="1_jbhx4"]
+[ext_resource type="Script" uid="uid://qsjwk5tl0jff" path="res://node_3d.gd" id="2_jo7of"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cduc"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_jbhx4"]
+
+[sub_resource type="Environment" id="Environment_jbhx4"]
+ambient_light_source = 3
+ambient_light_color = Color(0.166853, 0.166853, 0.166853, 1)
 
 [node name="Tester" type="Node3D"]
 script = ExtResource("1_jbhx4")
@@ -13,9 +18,16 @@ script = ExtResource("1_jbhx4")
 material_override = SubResource("StandardMaterial3D_8cduc")
 mesh = SubResource("ArrayMesh_jbhx4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -1.81594, 25.7795, 19.2428)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jbhx4")
 
-[node name="Light" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.759498, -0.650509, 1.27103e-08, -0.620018, 0.723899, 0.302569, -0.196824, 0.229801, -0.953127, -15.6988, 69.0133, 24.473)
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+script = ExtResource("2_jo7of")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.5, 4)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.146275, 0.941695, 0.303007, -0.562323, -0.331154, 0.757713, 0.813877, -0.0595534, 0.577977, 0, 0, 0)
 shadow_enabled = true
