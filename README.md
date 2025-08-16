@@ -5,7 +5,7 @@ jogo voxel (ainda nao jogavel)
 
 ## checklist
 
-# Sistema de Chunks & Geração de Mundo
+### Sistema de Chunks & Geração de Mundo
 
 - [ ] Estrutura dos Chunks  
 Cada chunk mantém uma grade de blocos (`Block[,,]`).  
