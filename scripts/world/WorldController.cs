@@ -1,6 +1,7 @@
 using Godot;
 
 public class WorldController {
+	public BlockDatabase blockDatabase;
 	public ChunkManager chunkManager;
 	public ChunkRenderer chunkRenderer;
 

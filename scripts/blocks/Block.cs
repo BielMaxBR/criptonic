@@ -1,6 +1,6 @@
 using Godot;
 
-public class Block {
+public  class Block {
 	[System.Flags]
 	public enum Faces {
 		UP = 1,
@@ -37,5 +37,4 @@ public class Block {
 	public void RemoveFace(Faces value) {
 		FacesEnabled &= ~value;
 	}
-
 }
