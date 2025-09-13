@@ -9,7 +9,7 @@ public class WorldController {
 
 	public WorldController(Node3D root) {
 		chunkManager = new ChunkManager();
-		chunkRenderer = new ChunkRenderer(root);
+		chunkRenderer = new ChunkRenderer(root, blockDatabase);
 	}
 
 	public void UdpateChunks() {

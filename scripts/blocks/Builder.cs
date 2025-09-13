@@ -1,10 +1,12 @@
 using System;
+using Godot;
 
 public class BlockBuilder {
 	public int id;
     public string name;
     public string sprite;
     public Type type;
+    public Vector2[][] faceUvList = new Vector2[6][];
 
     public BlockBuilder Id(int id) {
         this.id = id;

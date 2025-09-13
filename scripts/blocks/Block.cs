@@ -1,6 +1,6 @@
 using Godot;
 
-public  class Block {
+public class Block {
 	[System.Flags]
 	public enum Faces {
 		UP = 1,
@@ -15,7 +15,8 @@ public  class Block {
 	Faces FacesEnabled = 0;
 
 	public Vector3I Position;
-	
+	public string Name;
+
 	public Block(Vector3I position) {
 		SetFace(Faces.UP | Faces.DOWN | Faces.LEFT | Faces.RIGHT | Faces.FRONT | Faces.BACK);
 		
