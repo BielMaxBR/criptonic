@@ -8,8 +8,12 @@ public class WorldController {
 	int renderDistance = 12;
 
 	public WorldController(Node3D root) {
+		blockDatabase = new BlockDatabase();
 		chunkManager = new ChunkManager();
 		chunkRenderer = new ChunkRenderer(root, blockDatabase);
+
+		blockDatabase.RegisterAll();
+
 	}
 
 	public void UdpateChunks() {

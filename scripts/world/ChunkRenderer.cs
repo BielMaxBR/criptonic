@@ -48,7 +48,7 @@ public class ChunkRenderer {
 	        Vector3 bbr = pos + new Vector3(1, 0, 1); // Back Bottom Right
 	        Vector3 btl = pos + new Vector3(1, 1, 0); // Back Top Left
 	        Vector3 btr = pos + new Vector3(1, 1, 1); // Back Top Right
-
+	        GD.Print(block.Name);
 	        Vector2[][] faceUvList = blockDatabase.GetBlockData(block.Name).faceUvList;
 	        // Função local para adicionar uma face
 	        void AddFace(Vector3 v0, Vector3 v1, Vector3 v2, Vector3 v3, Vector3 normal, Vector2[] uvlist) {
