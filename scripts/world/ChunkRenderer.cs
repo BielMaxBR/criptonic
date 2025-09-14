@@ -6,7 +6,8 @@ using Array = Godot.Collections.Array;
 public class ChunkRenderer {
 	public Dictionary<Vector3I, MeshInstance3D> ChunkMeshs;
 	public BlockDatabase blockDatabase; 
-	public Node3D Root;	
+	public Node3D Root;
+	public Texture2D UVTexture;
 	public ChunkRenderer(Node3D root, BlockDatabase _blockDatabase) {
 		Root = root;
 		ChunkMeshs = new();
@@ -48,8 +49,10 @@ public class ChunkRenderer {
 	        Vector3 bbr = pos + new Vector3(1, 0, 1); // Back Bottom Right
 	        Vector3 btl = pos + new Vector3(1, 1, 0); // Back Top Left
 	        Vector3 btr = pos + new Vector3(1, 1, 1); // Back Top Right
-	        GD.Print(block.Name);
+	        
+	        // GD.Print(blockDatabase.GetBlockData(block.Name).id);
 	        Vector2[][] faceUvList = blockDatabase.GetBlockData(block.Name).faceUvList;
+	        
 	        // Função local para adicionar uma face
 	        void AddFace(Vector3 v0, Vector3 v1, Vector3 v2, Vector3 v3, Vector3 normal, Vector2[] uvlist) {
 	            int startIndex = verts.Count;
@@ -104,10 +107,11 @@ public class ChunkRenderer {
 	    instance.Mesh = mesh;
 	    StandardMaterial3D material = new();
 	    instance.MaterialOverride = material;
-	    // material.AlbedoColor = new Color(0.6f,0.6f, 0.6f);
-	    material.AlbedoTexture = GD.Load<Texture2D>("res://icon.svg");
-	    // material.ShadingMode = 0;
-	    // GD.Print(instance);
+	    material.AlbedoTexture = (UVTexture != null) ? UVTexture : GD.Load<Texture2D>("res://test.png");
+	    // material.AlbedoTexture = GD.Load<Texture2D>("res://icon.svg");
+	    material.TextureFilter = StandardMaterial3D.TextureFilterEnum.Nearest;
+	    material.Transparency = StandardMaterial3D.TransparencyEnum.AlphaScissor;
+	    
 	    ChunkMeshs.Add(chunkpos, instance);
 	    Root.AddChild(instance);
 	}

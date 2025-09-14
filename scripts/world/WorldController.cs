@@ -13,6 +13,7 @@ public class WorldController {
 		chunkRenderer = new ChunkRenderer(root, blockDatabase);
 
 		blockDatabase.RegisterAll();
+		chunkRenderer.UVTexture = blockDatabase.GenerateAtlas();
 
 	}
 

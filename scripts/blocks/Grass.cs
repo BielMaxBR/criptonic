@@ -10,6 +10,7 @@ public class Grass : Block {
 		return new BlockBuilder()
 			.Name("grass")
 			.Sprite("grass.png")
+			// .Sprite("grass_guide.png")
 			.Type<Grass>();
 	}
 }
